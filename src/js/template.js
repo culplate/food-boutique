@@ -4,23 +4,16 @@ import plus from '../img/svg/plus.svg';
 import basket from '../img/svg/basket.svg';
 import discount from '../img/svg/discount.svg';
 import popular from '../img/svg/popular-baskett.svg';
-import organic from '../img/svg/organic-food.svg';
-import closed from '../img/svg/closed.svg'
+import closed from '../img/svg/closed.svg';
+
+import { removeUnderscores } from '../helpers/stringHelpers';
 
 export function createMarkupProductsAll(arr) {
-   return arr
-     .map(
-       ({
-         price,
-         name,
-         img,
-         _id,
-         category,
-         size,
-         popularity,
-         is10PercentOff,
-       }) =>
-         `<li class="list-item animation-style" id="${_id}">
+  const array = removeUnderscores(arr);
+  return array
+    .map(
+      ({ price, name, img, _id, category, size, popularity, is10PercentOff }) =>
+        `<li class="list-item animation-style" id="${_id}">
             <div class="list-item-img">
                ${
                  is10PercentOff
@@ -43,14 +36,15 @@ export function createMarkupProductsAll(arr) {
             </div>
          </li>
          `
-     )
-     .join('');
+    )
+    .join('');
 }
 
 export function createMarkupPopularProducts(arr) {
-   return arr
-      .map(({ price, name, img, _id, category, size, popularity }) => {
-         return `
+  const array = removeUnderscores(arr);
+  return array
+    .map(({ price, name, img, _id, category, size, popularity }) => {
+      return `
            <div class="product-popular-card animation-style" id="${_id}">
            <div class="popular-image-item">
                <img src="${img}" alt="${name}" class="product-popular-image">
@@ -69,15 +63,15 @@ export function createMarkupPopularProducts(arr) {
                </button>
            </div>
        </div>`;
-      })
-      .join('');
+    })
+    .join('');
 }
 
 export function createMarkupProductsDiscount(arr) {
-   arr.splice(2);
-   return arr
-      .map(({ price, name, img, _id }) => {
-         return `
+  arr.splice(2);
+  return arr
+    .map(({ price, name, img, _id }) => {
+      return `
          <li class="discount-list-item animation-style" id="${_id}" >
             <div class="discount-card" >
                <img class="discount-icon animations-rotate" src="${discount}" alt="icon discount" width="100" height="100">
@@ -94,15 +88,16 @@ export function createMarkupProductsDiscount(arr) {
                </div>   
             </div>      
          </li>`;
-      })
-      .join('');
+    })
+    .join('');
 }
 
 export function createMarkupCart(arr) {
-   return arr
-      .map(
-         ({ price, name, img, _id, category, size }) =>
-            `<li class="cart-list-item" id="${_id}" >
+  const array = removeUnderscores(arr);
+  return array
+    .map(
+      ({ price, name, img, _id, category, size }) =>
+        `<li class="cart-list-item" id="${_id}" >
             <div class="cart-list-item-img-wrapper">
               <img class="cart-product-img" width=64 src="${img}">
             </div>
@@ -127,15 +122,16 @@ export function createMarkupCart(arr) {
                 </button>
               </div>
         </li>`
-      )
-      .join('');
+    )
+    .join('');
 }
 
 export function createMarkupModal(arr) {
-   return arr
-      .map(
-         ({ price, name, img, _id, category, size, popularity, desc }) =>
-            `
+  const array = removeUnderscores(arr);
+  return array
+    .map(
+      ({ price, name, img, _id, category, size, popularity, desc }) =>
+        `
          <li class="popup-list-item" id="${_id}">
             <button class="remove-btn">
                <img class="remove-btn-img" src="${closed}" alt="icon bascket" width="18" height="18">
@@ -158,6 +154,6 @@ export function createMarkupModal(arr) {
             </div>
          </li>
          `
-      )
-      .join('');
-} // list-item-info
+    )
+    .join('');
+}
