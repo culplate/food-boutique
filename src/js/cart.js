@@ -51,7 +51,6 @@ export function renderCart() {
 }
 
 // видалення конкретного продукту
-// можна оптимізувати ??
 containerCart.addEventListener('click', removeProduct);
 function removeProduct(event) {
   if (

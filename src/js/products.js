@@ -41,7 +41,6 @@ export function getProductsLimit() {
     return 9;
   }
 }
-// renderAll();
 
 // перемішування масиву та вибору випадкових продуктів
 function shuffleArray(array) {
@@ -63,20 +62,6 @@ async function renderPopular() {
 }
 
 renderPopular();
-
-async function renderAll() {
-  try {
-    const data = await fetchProductsAll('Fresh_Produce');
-    containerAll.insertAdjacentHTML(
-      'beforeend',
-      createMarkupProductsAll(removeUnderscores(data))
-    );
-    addCounter();
-    // console.log(data)
-  } catch (error) {
-    console.log(error.message);
-  }
-}
 
 function getRandomProducts(products, count) {
   shuffleArray(products);
@@ -212,15 +197,4 @@ async function addBtnClickPopularCard(event) {
     }
   }
   return;
-}
-
-// Функція для видалення підкреслення між словами
-export function removeUnderscores(arr) {
-  return arr.map(obj => {
-    let category = obj.category;
-    if (typeof category === 'string') {
-      category = category.split('_').join(' ');
-    }
-    return { ...obj, category };
-  });
 }
